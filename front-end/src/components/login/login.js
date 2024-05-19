@@ -14,54 +14,50 @@ const Login = ({ setAuth }) => {
         e.preventDefault();
         const user = {
             email,
-            password,        
+            password,
         };
 
         console.log(user);
-        login(user).then((response) =>{
+        login(user).then((response) => {
             console.log(response.data);
-            if(response.data.errorCode === -1 | response.data.errorCode === 1 ){
+            if (response.data.errorCode === '-1' | response.data.errorCode === '1') {
                 alert(response.data.errorDesc);
             }
-            else{
+            else {
                 Cookies.set('loggedInUser', email);
                 setAuth(true);
                 navigate('/');
 
             }
         })
-        .catch((error) => {
-            console.error('Login error:', error);
-            setError('An error occurred during login.');
-        });
-    
+            .catch((error) => {
+                console.error('Login error:', error);
+                setError('An error occurred during login.');
+            });
+
     };
 
     return (
-        <div className="login-box">
-            <h2>Login</h2>  
+
+        <div class="login">
+            <h1>Login</h1>
             <form onSubmit={handleSubmit}>
-                <div className="user-box">
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <label>Email</label>
-                </div>
-                <div className="user-box">
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <label>Password</label>
-                </div>
-                <button type="submit">Login</button>
+                <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />        <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
             </form>
             <p>
                 Don't have an account? <Link to="/register">Register here</Link>
             </p>
+        
+
         </div>
     );
 };

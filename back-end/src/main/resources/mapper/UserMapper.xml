@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.store.mapper.SellerMapper">
-	<select id="search" resultType="com.store.model.response.SellerResponse"
-			parameterType="com.store.model.request.SellerRequest">
+<mapper namespace="com.store.mapper.UserMapper">
+	<select id="search" resultType="com.store.model.response.UserResponse"
+			parameterType="com.store.model.request.UserRequest">
 		SELECT * FROM "seller"
 		  WHERE email = #{email} and password = #{password}
 	</select>
@@ -13,20 +13,22 @@
 		SELECT * FROM "seller"
 		WHERE email = #{email}
 	</select>
-	<insert id="create" parameterType="com.store.model.request.SellerRequest">
+	<insert id="create" parameterType="com.store.model.request.UserRequest">
         INSERT INTO seller(
             email,
+            user_id,
             "name",
             password,
            	refferal_code
         )VALUES(
         #{email},
+        #{userId},
         #{name},
         #{password},
         #{refferalCode}
         )
     </insert>
-	<update id="update" parameterType="com.store.model.request.SellerRequest">
+	<update id="update" parameterType="com.store.model.request.UserRequest">
         UPDATE control_list
         SET NAME = #{name},
             password = #{password},

@@ -29,10 +29,11 @@ const Register = () => {
         
         create_seller(user).then((response) =>{
             console.log(response.data);
-            if(response.data.errorCode === 1 | response.data.errorCode === -1)
+            if(response.data.errorCode === '1' | response.data.errorCode === '-1')
                alert("Tạo thất bại")
             else 
-                navigate('/login');
+            alert("Tạo thành công")
+            navigate('/login');
         })
     };
 

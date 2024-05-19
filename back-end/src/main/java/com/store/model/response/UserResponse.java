@@ -1,7 +1,7 @@
 package com.store.model.response;
 
-public class SellerResponse {
-
+public class UserResponse {
+    String userId;
     String email ;
     String name;
     String password;
@@ -37,6 +37,14 @@ public class SellerResponse {
 
     public void setRefferalCode(String refferalCode) {
         this.refferalCode = refferalCode;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }
 

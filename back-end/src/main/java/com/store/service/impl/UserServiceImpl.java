@@ -1,26 +1,24 @@
 package com.store.service.impl;
 
-import com.store.mapper.SellerMapper;
-import com.store.model.request.SellerRequest;
+import com.store.mapper.UserMapper;
+import com.store.model.request.UserRequest;
 import com.store.model.response.BaseResponse;
-import com.store.model.response.SellerResponse;
-import com.store.service.SellerService;
+import com.store.model.response.UserResponse;
+import com.store.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import java.security.MessageDigest;
-import java.util.UUID;
 
 @Service
-public class SellerServiceImpl implements SellerService {
+public class UserServiceImpl implements UserService {
     @Autowired
-    SellerMapper mapper;
+    UserMapper mapper;
 
 
     @Override
-    public BaseResponse search(SellerRequest request) {
+    public BaseResponse search(UserRequest request) {
         try {
-            SellerResponse seller = mapper.search(request);
+            UserResponse seller = mapper.search(request);
             if (seller != null && request.getPassword().equals(seller.getPassword()) && request.getEmail().equals(seller.getEmail())){
                 return new BaseResponse("0", "Login successful");
             } else {
@@ -32,17 +30,22 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public BaseResponse update(SellerRequest request) {
+    public BaseResponse update(UserRequest request) {
         return null;
     }
 
     @Override
-    public BaseResponse create(SellerRequest request) {
+    public BaseResponse create(UserRequest request) {
         try {
             Integer checkExisted = mapper.checkEmailExist(request);
             if (checkExisted != null && checkExisted > 0) {
                 return new BaseResponse("1", "create failed");
             }
+            String code = "ID-";
+            int count = mapper.count(request);
+
+            request.setUserId(code + count);
+
             int result = mapper.create(request);
 
             if (result > 0) {
@@ -56,7 +59,7 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public BaseResponse create_refferal_code(SellerRequest request) {
+    public BaseResponse create_refferal_code(UserRequest request) {
         try {
             String input = request.getEmail() ;
             // Sử dụng thuật toán SHA-256 để băm chuỗi đầu vào
@@ -79,7 +82,7 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public BaseResponse delete(SellerRequest request) {
+    public BaseResponse delete(UserRequest request) {
         return null;
     }
 }

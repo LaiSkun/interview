@@ -1,8 +1,9 @@
 package com.store.controller;
 
-import com.store.model.request.SellerRequest;
+import com.store.model.request.LinkRequest;
+import com.store.model.request.UserRequest;
 import com.store.model.response.BaseResponse;
-import com.store.service.SellerService;
+import com.store.service.UserService;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,31 +16,24 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "seller")
 public class AuthController {
     @Autowired
-    private SellerService service;
+    private UserService service;
 
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<BaseResponse> search(@RequestBody SellerRequest request) throws ServiceException {
+    public ResponseEntity<BaseResponse> search(@RequestBody UserRequest request) throws ServiceException {
         return ResponseEntity.status(HttpStatus.OK).body(service.search(request));
     }
 
-    @PostMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<BaseResponse> update(@RequestBody SellerRequest request) throws ServiceException {
-
-        return ResponseEntity.status(HttpStatus.OK).body(service.update(request));
-    }
 
     @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<BaseResponse> create(@RequestBody SellerRequest request) throws ServiceException {
+    public ResponseEntity<BaseResponse> create(@RequestBody UserRequest request) throws ServiceException {
         return ResponseEntity.status(HttpStatus.OK).body(service.create(request));
     }
 
-    @PostMapping(value = "/delete", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<BaseResponse> delete(@RequestBody SellerRequest request) throws ServiceException {
-        return ResponseEntity.status(HttpStatus.OK).body(service.delete(request));
-    }
 
     @PostMapping(value = "/refferal", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<BaseResponse> createRefferalCode(@RequestBody SellerRequest request) throws ServiceException {
+    public ResponseEntity<BaseResponse> createRefferalCode(@RequestBody UserRequest request) throws ServiceException {
         return ResponseEntity.status(HttpStatus.OK).body(service.create_refferal_code(request));
     }
+
+
 }
