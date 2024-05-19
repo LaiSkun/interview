@@ -4,21 +4,21 @@
 	<select id="search" resultType="com.store.model.response.SellerResponse"
 			parameterType="com.store.model.request.SellerRequest">
 		SELECT * FROM "seller"
-		<if test="limit > 0">
-			OFFSET (#{page}-1) * #{limit} FETCH
-			NEXT
-			#{limit} ROWS ONLY
-		</if>
+		  WHERE email = #{email} and password = #{password}
 	</select>
 	<select id="count" resultType="Integer">
 		SELECT  COUNT(*) FROM "seller"
+	</select>
+    <select id="checkEmailExist" resultType="Integer">
+		SELECT * FROM "seller"
+		WHERE email = #{email}
 	</select>
 	<insert id="create" parameterType="com.store.model.request.SellerRequest">
         INSERT INTO seller(
             email,
             "name",
             password,
-           	refferal_code,
+           	refferal_code
         )VALUES(
         #{email},
         #{name},

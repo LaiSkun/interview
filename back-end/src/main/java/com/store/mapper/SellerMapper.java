@@ -8,10 +8,10 @@ import java.util.List;
 
 @Mapper
 public interface SellerMapper {
-    List<SellerResponse> search(SellerRequest request);
+    SellerResponse search(SellerRequest request);
     int update(SellerRequest request);
     int create(SellerRequest request);
     int delete(SellerRequest request);
-    int getId();
     int count(SellerRequest request);
+    Integer checkEmailExist(SellerRequest request);
 }

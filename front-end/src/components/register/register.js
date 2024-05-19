@@ -1,50 +1,88 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import './register.css'; // Import file CSS
+import { create_seller } from '../service/SellerService';
 
 const Register = () => {
     const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [referralCode, setReferralCode] = useState('');
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (password !== confirmPassword) {
             alert('Passwords do not match');
             return;
         }
-        // Handle register logic here
-        console.log('Registering with', email, password);
+
+        const user = {
+            email,
+            name,
+            password,
+            refferalCode: referralCode
+        };
+        console.log('User data being sent:', user);
+        
+        create_seller(user).then((response) =>{
+            console.log(response.data);
+            if(response.data.errorCode == 1 | response.data.errorCode == -1)
+               alert("Tạo thất bại")
+            else 
+                navigate('/login');
+        })
     };
 
     return (
-
-
-        <div class="login-box">
+        <div className="login-box">
             <h2>Register</h2>
             <form onSubmit={handleSubmit}>
-                <div class="user-box">
-
+                <div className="user-box">
                     <input
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                    /> <label>Email:</label>
+                        required
+                    />
+                    <label>Email</label>
                 </div>
-                <div class="user-box">
-                   
+                <div className="user-box">
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+                    <label>Name</label>
+                </div>
+                <div className="user-box">
                     <input
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                    /><label>Password:</label>
+                        required
+                    />
+                    <label>Password</label>
                 </div>
-                <div class="user-box">
-
+                <div className="user-box">
                     <input
                         type="password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                    /> <label>Confirm Password:</label>
+                        required
+                    />
+                    <label>Confirm Password</label>
+                </div>
+                <div className="user-box">
+                    <input
+                        type="text"
+                        value={referralCode}
+                        onChange={(e) => setReferralCode(e.target.value)}
+                    />
+                    <label>Referral Code</label>
                 </div>
                 <button type="submit">Register</button>
             </form>
