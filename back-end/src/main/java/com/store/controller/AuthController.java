@@ -38,4 +38,8 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.OK).body(service.delete(request));
     }
 
+    @PostMapping(value = "/refferal", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<BaseResponse> createRefferalCode(@RequestBody SellerRequest request) throws ServiceException {
+        return ResponseEntity.status(HttpStatus.OK).body(service.create_refferal_code(request));
+    }
 }

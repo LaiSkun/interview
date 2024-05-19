@@ -10,5 +10,7 @@ public interface SellerService {
 
     BaseResponse create(SellerRequest request);
 
+    BaseResponse create_refferal_code(SellerRequest request);
+
     BaseResponse delete(SellerRequest request);
 }

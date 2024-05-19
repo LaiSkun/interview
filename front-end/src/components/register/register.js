@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './register.css'; // Import file CSS
 import { create_seller } from '../service/SellerService';
@@ -29,7 +29,7 @@ const Register = () => {
         
         create_seller(user).then((response) =>{
             console.log(response.data);
-            if(response.data.errorCode == 1 | response.data.errorCode == -1)
+            if(response.data.errorCode === 1 | response.data.errorCode === -1)
                alert("Tạo thất bại")
             else 
                 navigate('/login');

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './login.css'
 import { login } from '../service/SellerService';
+import Cookies from 'js-cookie';
 
 const Login = ({ setAuth }) => {
     const [email, setEmail] = useState('');
@@ -19,10 +20,11 @@ const Login = ({ setAuth }) => {
         console.log(user);
         login(user).then((response) =>{
             console.log(response.data);
-            if(response.data.errorCode == -1 | response.data.errorCode == 1 ){
+            if(response.data.errorCode === -1 | response.data.errorCode === 1 ){
                 alert(response.data.errorDesc);
             }
             else{
+                Cookies.set('loggedInUser', email);
                 setAuth(true);
                 navigate('/');
 
