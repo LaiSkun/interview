@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.store.mapper.LinkMapper">
+	<select id="search" resultType="com.store.model.response.LinkResponse"
+			parameterType="com.store.model.request.LinkRequest">
+		SELECT * FROM "seller_link"
+		  WHERE owner_link = #{ownerLink} AND is_deleted = '0'
+	</select>
+    <select id="count" resultType="Integer">
+		SELECT  COUNT(*) FROM "seller_link"
+	</select>
+	<insert id="create" parameterType="com.store.model.request.UserRequest">
+        INSERT INTO seller_link(
+            owner_link,
+            link,
+            product_name,
+            user_id,
+           	is_deleted,
+           	created_date
+        )VALUES(
+        #{ownerLink},
+        #{link},
+        #{productName},
+        #{userId},
+        #{isDeleted},
+        NOW()
+        )
+    </insert>
+
+    <update id="delete" parameterType="com.store.model.request.UserRequest">
+        UPDATE seller_link
+        SET is_deleted = #{isDeleted}
+        WHERE owner_link = #{ownerLink} AND link = #{link}
+    </update>
+
+
+    <update id="useLink" parameterType="com.store.model.request.UserRequest">
+        UPDATE seller_link
+        SET user_id = #{userId}
+        WHERE link = #{link}
+    </update>
+</mapper>

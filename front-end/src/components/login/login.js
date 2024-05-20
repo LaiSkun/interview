@@ -45,15 +45,15 @@ const Login = ({ setAuth }) => {
                 <input
                     type="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)} placeholder='Email here ?'
                 />        <input
                     type="password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)} placeholder='Password here ?'
                 />
                 <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
             </form>
-            <p>
+            <p className="text">
                 Don't have an account? <Link to="/register">Register here</Link>
             </p>
         

@@ -3,12 +3,20 @@ package com.store.model.response;
 import java.util.Date;
 
 public class LinkResponse {
+    String ownerLink;
     String link ;
-    String product_name ;
-    String user_id ;
-    Boolean is_deleted ;
-    Date created_date ;
+    String productName ;
+    String userId ;
+    String isDeleted ;
+    Date createdDate ;
 
+    public String getOwnerLink() {
+        return ownerLink;
+    }
+
+    public void setOwnerLink(String ownerLink) {
+        this.ownerLink = ownerLink;
+    }
 
     public String getLink() {
         return link;
@@ -18,35 +26,35 @@ public class LinkResponse {
         this.link = link;
     }
 
-    public String getProduct_name() {
-        return product_name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public String getUser_id() {
-        return user_id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public Boolean getIs_deleted() {
-        return is_deleted;
+    public String getIsDeleted() {
+        return isDeleted;
     }
 
-    public void setIs_deleted(Boolean is_deleted) {
-        this.is_deleted = is_deleted;
+    public void setIsDeleted(String isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
-    public Date getCreated_date() {
-        return created_date;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreated_date(Date created_date) {
-        this.created_date = created_date;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 }

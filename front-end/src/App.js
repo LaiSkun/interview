@@ -6,15 +6,16 @@ import Home from './components/home/home';
 import Cookies from 'js-cookie';
 import ProtectedRoute from './components/ProtectedRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import UseLink from './components/uselink/uselink';
 
 const App = () => {
-  const [auth, setAuth] = useState(!!Cookies.get('loggedInUser'));
+    const [auth, setAuth] = useState(!!Cookies.get('loggedInUser'));
 
     return (
-      <Router>
-      <div>
-          <nav>
-              {/* <ul>
+        <Router>
+            <div>
+                <nav>
+                    {/* <ul>
                   <li>
                       <Link to="/">Home</Link>
                   </li>
@@ -25,11 +26,11 @@ const App = () => {
                       <Link to="/register">Register</Link>
                   </li>
               </ul> */}
-          </nav>
-          <Routes>
-              <Route path="/login" element={<Login setAuth={setAuth} />} />
-              <Route path="/register" element={<Register />} />
-              <Route
+                </nav>
+                <Routes>
+                    <Route path="/login" element={<Login setAuth={setAuth} />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route
                         path="/"
                         element={
                             <ProtectedRoute>
@@ -37,9 +38,10 @@ const App = () => {
                             </ProtectedRoute>
                         }
                     />
-          </Routes>
-      </div>
-  </Router>
+                    <Route path="/use/:productname/:ownerLink" element={<UseLink />} />
+                </Routes>
+            </div>
+        </Router>
     );
 };
 
