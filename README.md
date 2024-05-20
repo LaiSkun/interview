@@ -55,7 +55,7 @@ Description:
 First of all, I apologize for not using Java ver 17 because I do not have JDK17 files and most of my projects use Java 11 so I apologize for not being able to meet the Java 17 requirements. Sorry about that
 
 Start Front-end(React 18)
-
+Npm start
 
 Start Back-end(Java 11) 
 
